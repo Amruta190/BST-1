@@ -82,6 +82,25 @@ int BinarySearchTree :: minval(Node *tmp)
         tmp=tmp->left;
     return tmp->key;
 }
+Node* BinarySearchTree :: deletekey(Node *tmp)
+{
+    if(tmp->left==NULL&&tmp->right==NULL)
+        return NULL;
+    else if(tmp->left==NULL||tmp->right==NULL)
+    {
+        if(tmp->left==NULL)
+            return tmp->right;
+        else
+            return tmp->left;
+    }
+    else
+    {
+        int k1=maxval(tmp->left);
+        // int k1=minval(tmp->right);
+        tmp->key=k1;
+        tmp->left=deletenode(tmp->left,k1);
+    }
+}
 void BinarySearchTree :: searchnode(Node *root,int k)
 {
     Node *tmp=root;
